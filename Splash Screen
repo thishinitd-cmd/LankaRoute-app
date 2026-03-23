@@ -1,0 +1,67 @@
+import React, { useEffect } from 'react';
+
+const Splash = ({ onFinish }) => {
+  useEffect(() => {
+    // තත්පර 3කට පසු Dashboard එකට යාමට (Redirect)
+    const timer = setTimeout(() => {
+      if (onFinish) onFinish();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [onFinish]);
+
+  return (
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-[#001F3F] overflow-hidden">
+      
+      {/* Background Image Overlay ( */}
+      <div 
+        className="absolute inset-0 opacity-20 bg-cover bg-center"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541423408854-af77328b9981?auto=format&fit=crop&q=80')" }}
+      ></div>
+
+      {/* Main Content Area */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6">
+        
+        {/* Logo Pin Icon */}
+        <div className="mb-8">
+          <svg width="80" height="100" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 0C17.9 0 0 17.9 0 40C0 70 40 100 40 100C40 100 80 70 80 40C80 17.9 62.1 0 40 0ZM40 55C31.7 55 25 48.3 25 40C25 31.7 31.7 25 40 25C48.3 25 55 31.7 55 40C55 48.3 48.3 55 40 55Z" fill="white"/>
+            {/* Train Icon inside Pin */}
+            <rect x="30" y="32" width="20" height="15" rx="2" fill="white" />
+            <path d="M35 50 L45 50" stroke="#001F3F" strokeWidth="2" />
+          </svg>
+        </div>
+
+        {/* Brand Name */}
+        <h1 className="text-5xl font-bold text-white tracking-tight mb-2">
+          LankaRoute
+        </h1>
+
+        {/* English Tagline */}
+        <p className="text-gray-300 text-sm font-medium tracking-widest uppercase mb-6">
+          YOUR ALL-IN-ONE TRAVEL GUIDE
+        </p>
+
+        {/* Sinhalese Text */}
+        <p className="text-3xl text-white font-semibold mb-12" style={{ fontFamily: 'Noto Sans Sinhala, sans-serif' }}>
+          ලංකා රූට්
+        </p>
+
+      </div>
+
+      {/* Footer Section */}
+      <div className="absolute bottom-12 flex flex-col items-center">
+        
+        {/* Loading Spinner */}
+        <div className="w-10 h-10 border-4 border-gray-600 border-t-[#FF5733] rounded-full animate-spin mb-6"></div>
+
+        {/* Bottom Small Text */}
+        <p className="text-gray-400 text-[10px] tracking-[0.2em] uppercase">
+          CONNECTING SRI LANKA
+        </p>
+      </div>
+
+    </div>
+  );
+};
+
+export default Splash;
