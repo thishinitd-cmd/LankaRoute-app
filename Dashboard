@@ -1,0 +1,146 @@
+import React from 'react';
+import { 
+  Search, MapPin, Train, Bus, Map, Ticket, 
+  Bell, Home, Calendar, User, ChevronRight 
+} from 'lucide-react';
+
+const Dashboard = ({onSearch}) => {
+  return (
+    <div className="flex justify-center bg-gray-500 min-h-screen">
+      {/* Mobile Frame */}
+      <div className="w-full max-w-md bg-white min-h-screen relative flex flex-col shadow-2xl overflow-hidden font-sans">
+        
+        {/* 1. Header - Fixed at Top */}
+        <div className="bg-[#001F3F] text-white p-6 pt-10 rounded-b-[35px] z-20 shadow-lg">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h1 className="text-3xl font-bold mb-1">ආයුබෝවන්!</h1>
+              <p className="text-gray-300 text-sm">කොහාටද යන්නේ?</p>
+            </div>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md">
+              <User className="text-[#001F3F] w-7 h-7" />
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-blue-200">
+            <MapPin size={14} />
+            <span>ඔබේ ස්ථානය: කොළඹ</span>
+          </div>
+        </div>
+
+        {/* Scrollable Content Area */}
+        <div className="flex-1 overflow-y-auto pb-24 px-5">
+          
+          {/* 2. Search Card - Overlapping Header */}
+          <div className="bg-white rounded-3xl p-5 shadow-xl border border-gray-100 -mt-6 relative z-30 mb-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="w-5 h-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                </div>
+                <input type="text" placeholder="පිටත්වන ස්ථානය" className="bg-transparent outline-none w-full text-sm" />
+              </div>
+              
+              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
+                <MapPin className="text-gray-400" size={20} />
+                <input type="text" placeholder="ගමනාන්තය" className="bg-transparent outline-none w-full text-sm" />
+              </div>
+
+              <button onClick={onSearch}
+              className="w-full bg-[#FF5733] text-white font-bold py-3.5 rounded-xl shadow-lg active:scale-95 transition-transform">
+                සොයන්න
+              </button>
+            </div>
+          </div>
+
+          {/* 3. Transport Modes */}
+          <div className="mb-8">
+            <h2 className="text-lg font-bold text-[#001F3F] mb-4">ප්‍රවාහන මාධ්‍ය තෝරන්න</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {/* Train */}
+              <div className="bg-[#EBF5FF] p-5 rounded-3xl flex flex-col items-center text-center border border-blue-50">
+                <div className="bg-white p-3 rounded-2xl mb-3 shadow-sm text-blue-600">
+                  <Train size={28} />
+                </div>
+                <span className="font-bold text-xs text-gray-800">දුම්රිය කාලසටහන්</span>
+                <span className="text-[10px] text-blue-500 font-bold mt-1">සජීවීව බලන්න</span>
+              </div>
+              {/* Bus */}
+              <div className="bg-[#EBFCF2] p-5 rounded-3xl flex flex-col items-center text-center border border-green-50">
+                <div className="bg-white p-3 rounded-2xl mb-3 shadow-sm text-green-600">
+                  <Bus size={28} />
+                </div>
+                <span className="font-bold text-xs text-gray-800">බස් රථ කාලසටහන්</span>
+                <span className="text-[10px] text-green-500 font-bold mt-1">සජීවීව බලන්න</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Features Section */}
+          <div className="space-y-3 mb-8">
+            <h2 className="text-lg font-bold text-[#001F3F] mb-1">ප්‍රධාන විශේෂාංග</h2>
+            
+            {[
+              { icon: <Map className="text-orange-500" />, label: 'සජීවී සිතියම', bg: 'bg-orange-50' },
+              { icon: <Ticket className="text-purple-500" />, label: 'ටිකට්පත් වෙන්කිරීම්', bg: 'bg-purple-50' },
+              { icon: <Bell className="text-red-400" />, label: 'ප්‍රමාද දැනුම්දීම්', bg: 'bg-red-50' }
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center justify-between bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:bg-gray-50 cursor-pointer">
+                <div className="flex items-center gap-4">
+                  <div className={`${item.bg} p-2.5 rounded-xl`}>{item.icon}</div>
+                  <span className="font-medium text-gray-700 text-sm">{item.label}</span>
+                </div>
+                <ChevronRight size={18} className="text-gray-300" />
+              </div>
+            ))}
+          </div>
+
+          {/* 5. Recent Journeys */}
+          <div className="space-y-3">
+            <h2 className="text-lg font-bold text-[#001F3F]">මෑතකදී ගිය ගමන්</h2>
+            {[
+              { from: 'කොළඹ', to: 'ගම්පහ', date: 'මාර්තු 18, 2026', type: 'train' },
+              { from: 'කොළඹ', to: 'කැළණිය', date: 'මාර්තු 15, 2026', type: 'bus' },
+              { from: 'මහනුවර', to: 'කැළණිය', date: 'මාර්තු 10, 2026', type: 'train' }
+            ].map((trip, idx) => (
+              <div key={idx} className="flex items-center justify-between bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+                <div>
+                  <div className="flex items-center gap-2 font-bold text-gray-800 text-sm">
+                    {trip.from} <ChevronRight size={12} /> {trip.to}
+                  </div>
+                  <div className="text-[10px] text-gray-400 mt-1 font-medium">{trip.date}</div>
+                </div>
+                <div className="p-2 bg-gray-50 rounded-lg text-gray-400 border border-gray-100">
+                  {trip.type === 'train' ? <Train size={18} /> : <Bus size={18} />}
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        {/* 6. Bottom Navigation - Fixed at Bottom */}
+        <div className="absolute bottom-0 w-full bg-white border-t border-gray-100 py-3 px-8 flex justify-between items-center z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+          <div className="flex flex-col items-center gap-1 text-[#001F3F]">
+            <Home size={22} />
+            <span className="text-[9px] font-bold">මුල් පිටුව</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 text-gray-300">
+            <Calendar size={22} />
+            <span className="text-[9px] font-bold">වෙන්කිරීම්</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 text-gray-300">
+            <Bell size={22} />
+            <span className="text-[9px] font-bold">දැනුම්දීම්</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 text-gray-300">
+            <User size={22} />
+            <span className="text-[9px] font-bold">ගිණුම</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
