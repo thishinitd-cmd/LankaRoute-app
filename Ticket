@@ -1,0 +1,71 @@
+import React from 'react';
+// 1. මෙහි 'lucide-react' ලෙස නිවැරදි කර ඇත
+import { ArrowLeft, MapPin, QrCode, Calendar, Clock, Train, CheckCircle2 } from 'lucide-react';
+
+const Ticket = ({ onBack, onLiveView }) => {
+  return (
+    <div className="flex justify-center bg-gray-200 min-h-screen font-sans">
+      <div className="w-full max-w-md bg-[#F8F9FA] min-h-screen relative flex flex-col shadow-2xl overflow-hidden">
+        
+        {/* Header Section */}
+        <div className="p-6 pt-10 flex justify-between items-center bg-white shadow-sm">
+          <button 
+            onClick={onBack} 
+            className="p-2 bg-gray-50 rounded-full hover:bg-gray-100 active:scale-95 transition-all"
+          >
+            <ArrowLeft size={22} className="text-gray-700" />
+          </button>
+          
+          <h1 className="text-xl font-black text-[#001F3F]">ඔබේ ප්‍රවේශ පත්‍රය</h1>
+          
+          <div className="flex flex-col items-center text-[#10B981]">
+            <CheckCircle2 size={24} />
+            <span className="text-[10px] font-bold uppercase">තහවුරුයි</span>
+          </div>
+        </div>
+
+        {/* Ticket Body */}
+        <div className="p-6 flex-1 flex flex-col items-center">
+          
+          {/* Journey Card */}
+          <div className="w-full bg-white p-5 rounded-[32px] border-2 border-gray-100 mb-8 shadow-sm">
+            <div className="flex justify-between items-center mb-4">
+              <span className="font-black text-gray-800 flex items-center gap-2">
+                <Train size={18} className="text-blue-600"/> යාල් දේවි
+              </span>
+              <span className="text-[10px] font-black text-gray-400">S10 - 16231</span>
+            </div>
+            <div className="flex justify-between text-[11px] font-bold text-gray-500">
+              <span className="flex items-center gap-1"><Calendar size={14}/> 2026-03-25</span>
+              <span className="flex items-center gap-1"><Clock size={14}/> 06:00 AM</span>
+            </div>
+          </div>
+
+          {/* QR Section */}
+          <div className="relative mb-8">
+             <div className="w-52 h-52 bg-white rounded-[40px] flex items-center justify-center border-2 border-dashed border-blue-100 shadow-inner">
+                <QrCode size={120} className="text-[#001F3F]" />
+             </div>
+          </div>
+          
+          <div className="bg-gray-100 px-6 py-2 rounded-full mb-10">
+            <p className="text-[11px] font-black text-gray-400">දුම්රියට ගොඩවීමේදී මෙම QR කේතය පෙන්වන්න</p>
+          </div>
+
+          {/* 2. LIVE TRACKING BUTTON - මෙහි වර්ණ සහ පෙනුම නිවැරදි කර ඇත */}
+          <button 
+            onClick={onLiveView} 
+            className="w-full flex items-center justify-center gap-3 py-5 bg-[#001F3F] rounded-[28px] font-black text-white text-base shadow-xl shadow-blue-100 active:scale-95 transition-all mt-auto mb-6"
+          >
+            {/* MapPin අයිකනය මෙහි නිවැරදිව භාවිතා කර ඇත */}
+            <MapPin size={20} className="text-green-400" /> 
+            සජීවීව ගමන් මග බලන්න
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default Ticket;
