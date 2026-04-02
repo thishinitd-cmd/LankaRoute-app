@@ -10,7 +10,6 @@ LankaRoute is a robust mobile solution designed to tackle the unpredictability o
 * **Smart Proximity Alerts:** Identify the nearest bus stops and railway stations based on your current GPS location.
 * **Route Search:** Search for specific transit routes and see the active vehicles currently operating on those paths.
 * **UI/UX Focused Design:** A clean, minimalist interface designed in Figma to provide a seamless user experience.
-* **Offline Caching:** Basic route information is cached to ensure accessibility even with spotty network connections.
 
 ---
 
